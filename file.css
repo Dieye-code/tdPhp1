@@ -149,3 +149,7 @@ a {
     color: red;
     display: none;
 }
+
+#dateDeblocage {
+    display: none;
+}

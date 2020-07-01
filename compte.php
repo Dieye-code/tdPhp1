@@ -13,7 +13,7 @@ $clientPhysiquesalarie = $pdo->query('SELECT * FROM clientPhysique WHERE idClien
 $clientPhysiquesimple = $pdo->query('SELECT * FROM clientPhysique WHERE idClientMoral IS NULL')->fetchAll();
 $agios = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Agios'")->fetch();
 $frais = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Ouverture'")->fetch();
-
+$fraisBlocage = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Blocage'")->fetch();
 
 ?>
 <!DOCTYPE html>
@@ -62,6 +62,10 @@ $frais = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Ouverture'"
                         <div class="infoCompte">
                             <div class="title">Info Compte</div>
                             <div class="form-group">
+                                <label for="solde" class="control-label">Clés RIB</label>
+                                <input type="text" class="form-control" name="clesRib" id="clesRib">
+                            </div>
+                            <div class="form-group">
                                 <label for="typeCompte" class="control-label">Type de Compte</label>
                                 <select name="typeCompte" id="typeCompte" class="form-control">
                                     <option value="0">--Type de Compte</option>
@@ -74,10 +78,15 @@ $frais = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Ouverture'"
                                     ?>
                                 </select>
                             </div>
+                            <div class="form-group" id="dateDeblocage">
+                                <label for="solde" class="control-label">Date Déblocage</label>
+                                <input type="date" class="form-control" name="dateDebc" id="dateDebc">
+                            </div>
                             <div class="form-group">
                                 <label for="solde" class="control-label">Solde</label>
                                 <input type="number" class="form-control" name="solde" id="solde" value="0">
                                 <span class="alert-danger" id="solde-invalid">Le solde doit etre superieur  à <?php echo $frais['montant']; ?></span>
+                                <span class="alert-danger" id="fraisBlocage-invalid">Le solde doit etre superieur  à <?php echo $fraisBlocage['montant']; ?></span>
                                 <span class="alert-danger" id="agios-invalid">Le solde doit etre superieur  à <?php echo $agios['montant']; ?></span>
                             </div>
                             <div class="form-group" id="fraisBancaire">
@@ -89,6 +98,11 @@ $frais = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Ouverture'"
                                 <label for="agios" class="control-label">Agios</label>
                                 <span><?php echo $agios['montant']; ?></span>
                                 <input type="hidden" class="form-control" name="agios" id="agios" value="<?php echo $agios['montant']; ?>" >
+                            </div>
+                            <div class="form-group" id="bloqueCompte">
+                                <label for="fraisBlocageCompte" class="control-label">Frais Blocage</label>
+                                <span><?php echo $fraisBlocage['montant']; ?></span>
+                                <input type="hidden" class="form-control" name="fraisBlocageCompte" id="fraisBlocageCompte" value="<?php echo $fraisBlocage['montant']; ?>" >
                             </div>
                             <div class="form-group" id="typeClientSelect">
                                 <label for="typeClient" class="control-label">Type Client</label>
