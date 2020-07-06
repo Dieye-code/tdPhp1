@@ -5,7 +5,7 @@ require_once('model.php');
 $pdo = getConnexion();
 
 $clientMorals = $pdo->query('SELECT * FROM clientMoral')->fetchAll();
-$typeClients= $pdo->query('SELECT * FROM typeClient')->fetchAll()
+$typeClients= $pdo->query('SELECT * FROM typeClient')->fetchAll();
 
 ?>
 

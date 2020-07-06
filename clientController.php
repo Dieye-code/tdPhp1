@@ -22,6 +22,8 @@ if (isset($_POST['ajouter'])) {
         $a = $pdoStatement->execute($data);
         if ($a == true) {
             echo 'Client Moral ajouté';
+        } else {
+            echo 'client moral non ajouté';
         }
     } else {
         $pdo = getConnexion();

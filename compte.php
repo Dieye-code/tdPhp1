@@ -72,7 +72,7 @@ $fraisBlocage = $pdo->query("SELECT * FROM `typeFrais` WHERE libelle='Frais Bloc
                                     <?php
                                     foreach ($typeComptes as $typeCompte) {
                                     ?>
-                                        <option value="<?php echo $typeCompte['id']; ?>"><?php echo $typeCompte['libelle']; ?></option>
+                                        <option value="<?php echo $typeCompte['id']; ?>"><?php echo $typeCompte['id'].$typeCompte['libelle']; ?></option>
                                     <?php
                                     }
                                     ?>
