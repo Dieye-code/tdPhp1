@@ -1,0 +1,15 @@
+RewriteEngine On
+
+
+
+ErrorDocument 404 /banqueDuPeupleMVC/view/erreur/404.php
+ErrorDocument 500 /banqueDuPeupleMVC/view/erreur/500.php
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-l
+
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

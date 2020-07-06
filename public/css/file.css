@@ -68,8 +68,7 @@ a {
     padding: 5%;
 }
 
-.active,
-.sideBare_body .nav:hover {
+.active {
     background: #2196f3;
     color: white;
 }

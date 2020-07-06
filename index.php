@@ -1,39 +1,51 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="La gestion de  la Banque du peuple" />
-    <meta name="author" content="moustaphadieye96@gmail.com" />
-    <meta name="keywords" content="Banque, Client, Compte" />
-    <title>Ajout d'un compte client</title>
-    <link rel="stylesheet" href="file.css">
-</head>
+require_once('app/autoload.php');
 
-<body>
-    <!--le header de la Page-->
-    <div class="header">
-        <a href="#">
-            <span class="logo_1">BANQUE DU</span> <span class="logo_2">PEUPLE</span>
-        </a>
-    </div>
+$url = $_SERVER['REQUEST_URI'];
 
-    <!--Le Contenu de la page-->
-    <div class="container">
-        <!--Le side Bare-->
-        <div class="sideBare">
-            <div class="sideBare_header">
-                <img src="profil.png" alt="Profil" class="profil">
-                <span class="email">moustaphadieye96@gmail.com</span>
-            </div>
-            <div class="sideBare_body">
-                <div class="nav active"><a href="#">Dashboard</a></div>
-                <div class="nav"><a href="compte.php">Compte</a></div>
-                <div class="nav"><a href="client.php">Client</a></div>
-            </div>
-        </div>
-    </div>
-</body>
+$url = explode('/',$url);
 
-</html>
+if(file_exists('controller/'.$url[2].'Controller.php')){
+
+    require_once('controller/'.$url[2].'Controller.php');
+
+    $url[2] = ucfirst($url[2]).'Controller';
+
+    if(class_exists($url[2])){
+        $c = new $url[2]();
+        // var_dump($url[2]);
+        // die;
+        if (isset($url[3])) {
+            if(method_exists($url[2],$url[3])){
+                try {
+                    if (isset($url[4])) {
+                        $c->{$url[3]}($url[4]);
+                    } else {
+                        $c->{$url[3]}();
+                    }
+                } catch (ArgumentCountError $argc) {
+                    $error = 'Ce Fonction a des parametres';
+                    require_once('view/erreur/404.php');
+                }
+            }else {
+                $error = "la methode ".$url[3]." n'existe pas ";
+                require_once('view/erreur/404.php');
+            }
+        } else {
+            if (method_exists($url[2],"liste")) {
+                $c->liste();
+            } else {
+                $error = "Pas de view correspondant";
+                require_once('view/erreur/404.php');
+            }
+        }
+    }else{
+        $error = "La Class ".$url[2]." n'existe pas";
+        require_once('view/erreur/404.php');
+    }
+
+} else {
+    $error = "Le controller ".$url[2]." n'existe pas";
+    require_once('view/erreur/404.php');
+}
