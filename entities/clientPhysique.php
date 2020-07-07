@@ -1,5 +1,7 @@
 <?php
 
+namespace bd;
+
 
 class ClientPhysique 
 {

@@ -1,7 +1,12 @@
 <?php
 
+namespace src;
 
-
+use bd\Compte;
+use model\ClientDb;
+use model\CompteDb;
+use model\TypeCompteDb;
+use model\TypeFraisDb;
 
 class CompteController
 {

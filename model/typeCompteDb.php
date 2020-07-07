@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 class TypeCompteDb extends Model 
 {
     public function listeTypeComptes(){

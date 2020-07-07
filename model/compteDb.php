@@ -1,4 +1,7 @@
 <?php
+namespace model;
+
+use bd\Compte;
 
 class CompteDb extends Model
 {

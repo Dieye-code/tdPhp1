@@ -1,5 +1,9 @@
 <?php
 
+namespace model;
+
+use bd\ClientMoral;
+use bd\ClientPhysique;
 
 class ClientDb extends Model
 {

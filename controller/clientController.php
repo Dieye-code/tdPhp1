@@ -1,5 +1,11 @@
 <?php
 
+namespace src;
+
+use bd\ClientMoral;
+use bd\ClientPhysique;
+use model\ClientDb;
+use model\TypeClientDb;
 
 class ClientController
 {

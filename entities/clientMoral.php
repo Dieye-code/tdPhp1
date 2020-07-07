@@ -1,5 +1,6 @@
 <?php
 
+namespace bd;
 
 class ClientMoral
 {

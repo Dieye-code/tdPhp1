@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 class TypeClientDb extends Model 
 {
     public function listeTypeClients(){
