@@ -1,5 +1,10 @@
 <?php
+// foreach ($typeClients as $typeClient ) {
+//     var_dump($typeClient->getId());
 
+// }
+// // var_dump($typeClients);
+// die;
 require_once('./public/web/header.php');
 ?>
 
@@ -41,13 +46,9 @@ require_once('./public/web/header.php');
                             <label for="typeClientPhysique" class="control-label">Type Client
                                 Physique</label>
                             <select name="typeClientPhysique" id="typeClientPhysique" class="form-control">
-                                <?php
-                                foreach ($typeClients as $typeClient) {
-                                ?>
-                                    <option value="<?php echo $typeClient['id']; ?>"><?php echo $typeClient['libelle']; ?></option>
-                                <?php
-                                }
-                                ?>
+                                <?php foreach ($typeClients as $typeClient) : ?>
+                                    <option value="<?php echo $typeClient->getId(); ?>"><?php echo $typeClient->getLibelle(); ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -114,7 +115,7 @@ require_once('./public/web/header.php');
                             <?php
                             foreach ($clientMorals as $clientMoral) {
                             ?>
-                                <option value="<?php echo $clientMoral['id']; ?>"><?php echo $clientMoral['nom']; ?></option>
+                                <option value="<?php echo $clientMoral->getId(); ?>"><?php echo $clientMoral->getNom(); ?></option>
                             <?php
                             }
                             ?>

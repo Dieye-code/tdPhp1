@@ -1,0 +1,19 @@
+{
+    "name": "simplon/banque-du-peuple-mvc",
+    "description": "Projet de Gestion de la  Banque du peuple",
+    "authors": [{
+        "name": "Moustapha Dieye",
+        "email": "moustaphadieye96@gmail.com"
+    }],
+    "autoload": {
+        "psr-0": { "": "entities/" },
+        "psr-4": {
+            "src\\": "controller/",
+            "bd\\": "entities/",
+            "model\\": "model/"
+        }
+    },
+    "require": {
+        "doctrine/orm": "^2.6.2"
+    }
+}

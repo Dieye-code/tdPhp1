@@ -23,7 +23,7 @@ require_once('./public/web/header.php');
                                     <?php
                                     foreach ($typeComptes as $typeCompte) {
                                     ?>
-                                        <option value="<?php echo $typeCompte['id']; ?>"><?php echo $typeCompte['libelle']; ?></option>
+                                        <option value="<?php echo $typeCompte->getId(); ?>"><?php echo $typeCompte->getLibelle(); ?></option>
                                     <?php
                                     }
                                     ?>
@@ -36,24 +36,24 @@ require_once('./public/web/header.php');
                             <div class="form-group">
                                 <label for="solde" class="control-label">Solde</label>
                                 <input type="number" class="form-control" name="solde" id="solde" value="0">
-                                <span class="alert-danger" id="solde-invalid">Le solde doit etre superieur  à <?php echo $frais['montant']; ?></span>
-                                <span class="alert-danger" id="fraisBlocage-invalid">Le solde doit etre superieur  à <?php echo $fraisBlocage['montant']; ?></span>
-                                <span class="alert-danger" id="agios-invalid">Le solde doit etre superieur  à <?php echo $agios['montant']; ?></span>
+                                <span class="alert-danger" id="solde-invalid">Le solde doit etre superieur  à <?php echo $fraisOuverture->getMontant(); ?></span>
+                                <span class="alert-danger" id="fraisBlocage-invalid">Le solde doit etre superieur  à <?php echo $fraisBlocageOuverture->getMontant(); ?></span>
+                                <span class="alert-danger" id="agios-invalid">Le solde doit etre superieur  à <?php echo $agiosOuverture->getMontant(); ?></span>
                             </div>
                             <div class="form-group" id="fraisBancaire">
                                 <label for="frais" class="control-label">Frais Bancaire</label>
-                                <span><?php echo $fraisOuverture['montant']; ?></span>
-                                <input type="hidden" class="form-control" name="frais" id="frais" value="<?php echo $fraisOuverture['montant']; ?>" >
+                                <span><?php echo $fraisOuverture->getMontant(); ?></span>
+                                <input type="hidden" class="form-control" name="frais" id="frais" value="<?php echo $fraisOuverture->getMontant(); ?>" >
                             </div>
                             <div class="form-group" id="agiosCompte">
                                 <label for="agios" class="control-label">Agios</label>
-                                <span><?php echo $agiosOuverture['montant']; ?></span>
-                                <input type="hidden" class="form-control" name="agios" id="agios" value="<?php echo $agiosOuverture['montant']; ?>" >
+                                <span><?php echo $agiosOuverture->getMontant(); ?></span>
+                                <input type="hidden" class="form-control" name="agios" id="agios" value="<?php echo $agiosOuverture->getMontant(); ?>" >
                             </div>
                             <div class="form-group" id="bloqueCompte">
                                 <label for="fraisBlocageCompte" class="control-label">Frais Blocage</label>
-                                <span><?php echo $fraisBlocageOuverture['montant']; ?></span>
-                                <input type="hidden" class="form-control" name="fraisBlocageCompte" id="fraisBlocageCompte" value="<?php echo $fraisBlocageOuverture['montant']; ?>" >
+                                <span><?php echo $fraisBlocageOuverture->getMontant(); ?></span>
+                                <input type="hidden" class="form-control" name="fraisBlocageCompte" id="fraisBlocageCompte" value="<?php echo $fraisBlocageOuverture->getMontant(); ?>" >
                             </div>
                             <div class="form-group" id="typeClientSelect">
                                 <label for="typeClient" class="control-label">Type Client</label>
@@ -79,7 +79,7 @@ require_once('./public/web/header.php');
                                         <?php
                                         foreach ($clientPhysiquesimple as $clientP) {
                                         ?>
-                                            <option value="<?php echo $clientP['id']; ?>"><?php echo $clientP['prenom'].' '.$clientP['nom']; ?></option>
+                                            <option value="<?php echo $clientP->getId(); ?>"><?php echo $clientP->getPrenom().' '.$clientP->getNom(); ?></option>
                                         <?php
                                         }
                                         ?>
@@ -94,7 +94,7 @@ require_once('./public/web/header.php');
                                         <?php
                                         foreach ($clientPhysiquesalarie as $clientP) {
                                         ?>
-                                            <option value="<?php echo $clientP['id']; ?>"><?php echo $clientP['prenom'].' '.$clientP['nom']; ?></option>
+                                            <option value="<?php echo $clientP->getId(); ?>"><?php echo $clientP->getPrenom().' '.$clientP->getNom(); ?></option>
                                         <?php
                                         }
                                         ?>
@@ -109,7 +109,7 @@ require_once('./public/web/header.php');
                                         <?php
                                         foreach ($clientMorals as $clientMoral) {
                                         ?>
-                                            <option value="<?php echo $clientMoral['id']; ?>"><?php echo $clientMoral['nom']; ?></option>
+                                            <option value="<?php echo $clientMoral->getId(); ?>"><?php echo $clientMoral->getNom(); ?></option>
                                         <?php
                                         }
                                         ?>

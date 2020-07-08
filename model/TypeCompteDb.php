@@ -1,0 +1,10 @@
+<?php
+
+namespace model;
+
+class TypeCompteDb extends Model 
+{
+    // public function listeTypeComptes(){
+    //     return $this->executeSelect('SELECT * FROM typeCompte')->fetchAll();
+    // }
+}

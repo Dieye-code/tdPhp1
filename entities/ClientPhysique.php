@@ -1,23 +1,93 @@
 <?php
 
-namespace bd;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as orm;
 
-
+/**
+ * @orm\Entity @orm\Table(name="clientphysique")
+ */
 class ClientPhysique 
 {
+    /**
+     * @orm\id @orm\column(type="integer") @orm\GeneratedValue
+     */
     private $id;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $nom;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $prenom;
-    private $nci;
+    /**
+     * @orm\column(type="string", length=100)
+     */
+    private $nci;/**
+    * @orm\column(type="string", length=100)
+    */
     private $telephone;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $adresse;
+    /**
+     * @orm\column(type="integer", nullable=true)
+     */
     private $salaire;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $profession;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $email;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $login;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $password;
-    private $idTypeClient;
-    private $idClientMoral;
+    /**
+     * @orm\ManyToOne(targetEntity="TypeClient", inversedBy="clientPhysiques",cascade={"persist"})
+     * @orm\JoinColumn(name="idTypeClient", referencedColumnName="id")
+     */
+    private $typeClient;
+    /**
+     * @orm\ManyToOne(targetEntity="ClientMoral", inversedBy="clientPhysiques",cascade={"persist"})
+     * @orm\JoinColumn(name="idClientMoral", referencedColumnName="id")
+     */
+    private $clientMoral;
+    /**
+     * @orm\OneToMany(targetEntity="Compte", mappedBy="clientPhysique")
+     **/
+    private $comptes;
+
+    public function __construct()
+    {
+        $this->comptes = new ArrayCollection();
+    }
+
+    public function getParam(){
+        return [
+            'nom'=>$this->nom,
+            'prenom'=>$this->prenom,
+            'nci'=>$this->nci,
+            'telephone'=>$this->telephone,
+            'adresse'=>$this->adresse,
+            'salaire'=>$this->salaire,
+            'profession'=>$this->profession,
+            'email'=>$this->email,
+            'login'=>$this->login,
+            'password'=>$this->password,
+            'idClientMoral'=>$this->idClientMoral,
+            'idTypeClient'=>$this->idTypeClient
+        ];
+    }
+
 
     /**
      * Get the value of id
@@ -196,51 +266,50 @@ class ClientPhysique
     }
 
     /**
-     * Get the value of idTypeClient
+     * Get the value of typeClient
      */ 
-    public function getIdTypeClient()
+    public function getTypeClient()
     {
-        return $this->idTypeClient;
+        return $this->typeClient;
     }
 
     /**
-     * Set the value of idTypeClient
+     * Set the value of typeClient
      */ 
-    public function setIdTypeClient($idTypeClient)
+    public function setTypeClient($typeClient)
     {
-        $this->idTypeClient = $idTypeClient;
+        $this->typeClient = $typeClient;
     }
 
     /**
-     * Get the value of idClientMoral
+     * Get the value of clientMoral
      */ 
-    public function getIdClientMoral()
+    public function getClientMoral()
     {
-        return $this->idClientMoral;
+        return $this->clientMoral;
     }
 
     /**
-     * Set the value of idClientMoral
+     * Set the value of clientMoral
      */ 
-    public function setIdClientMoral($idClientMoral)
+    public function setClientMoral($clientMoral)
     {
-        $this->idClientMoral = $idClientMoral;
+        $this->clientMoral = $clientMoral;
     }
 
-    public function getParam(){
-        return [
-            'nom'=>$this->nom,
-            'prenom'=>$this->prenom,
-            'nci'=>$this->nci,
-            'telephone'=>$this->telephone,
-            'adresse'=>$this->adresse,
-            'salaire'=>$this->salaire,
-            'profession'=>$this->profession,
-            'email'=>$this->email,
-            'login'=>$this->login,
-            'password'=>$this->password,
-            'idClientMoral'=>$this->idClientMoral,
-            'idTypeClient'=>$this->idTypeClient
-        ];
+    /**
+     * Get the value of comptes
+     */ 
+    public function getComptes()
+    {
+        return $this->comptes;
+    }
+
+    /**
+     * Set the value of comptes
+     */ 
+    public function setComptes($comptes)
+    {
+        $this->comptes = $comptes;
     }
 }

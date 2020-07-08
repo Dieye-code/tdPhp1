@@ -1,14 +1,14 @@
 <?php
 
-require_once('app/autoload.php');
+require_once('vendor/autoload.php');
 
 $url = $_SERVER['REQUEST_URI'];
 
 $url = explode('/', $url);
+$url[2] = ucfirst($url[2]);
 
 if (file_exists('controller/' . $url[2] . 'Controller.php')) {
 
-    require_once('controller/' . $url[2] . 'Controller.php');
 
     $url[2] = ucfirst($url[2]) . 'Controller';
 

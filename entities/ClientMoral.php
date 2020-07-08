@@ -1,18 +1,64 @@
 <?php
 
-namespace bd;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as orm;
+
+/**
+ * @orm\Entity @orm\Table(name="clientmoral")
+ */
 class ClientMoral
 {
+    /**
+     * @orm\id @orm\column(type="integer") @orm\GeneratedValue
+     */
     private $id;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $raisonSocial;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $adresse;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $nom;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $numero;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $telephone;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $email;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $login;
+    /**
+     * @orm\column(type="string", length=100, nullable=true)
+     */
     private $password;
+    /**
+     * @orm\OneToMany(targetEntity="ClientPhysique", mappedBy="employeur")
+     **/
+    private $clientPhysiques;
+    /**
+     * @orm\OneToMany(targetEntity="Compte", mappedBy="clientMoral")
+     **/
+    private $comptes;
+
+    public function __construct()
+    {
+        $this->clientPhysiques = new ArrayCollection();
+        $this->comptes = new ArrayCollection();
+    }
     
 
     public function getParam(){
@@ -170,5 +216,37 @@ class ClientMoral
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * Get the value of clientPhysiques
+     */ 
+    public function getClientPhysiques()
+    {
+        return $this->clientPhysiques;
+    }
+
+    /**
+     * Set the value of clientPhysiques
+     */ 
+    public function setClientPhysiques($clientPhysiques)
+    {
+        $this->clientPhysiques = $clientPhysiques;
+    }
+
+    /**
+     * Get the value of comptes
+     */ 
+    public function getComptes()
+    {
+        return $this->comptes;
+    }
+
+    /**
+     * Set the value of comptes
+     */ 
+    public function setComptes($comptes)
+    {
+        $this->comptes = $comptes;
     }
 }

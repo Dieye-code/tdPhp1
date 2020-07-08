@@ -1,21 +1,64 @@
 <?php
 
-namespace bd;
 
+use Doctrine\ORM\Mapping as orm;
+
+/**
+ * @orm\Entity @orm\Table(name="compte")
+ */
 class Compte 
 {
+    /**
+     * @orm\id @orm\column(type="integer") @orm\GeneratedValue
+     */
     private $id;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $numero;
+    /**
+     * @orm\column(type="string", length=100)
+     */
     private $clerib;
+    /**
+     * @orm\column(type="integer")
+     */
     private $solde;
+    /**
+     * @orm\column(type="string", length=20)
+     */
     private $etat;
+    /**
+     * @orm\column(type="string", length=12, nullable=true)
+     */
     private $dateDeboc;
+    /**
+     * @orm\column(type="string", length=12)
+     */
     private $dateCreat;
+    /**
+     * @orm\column(type="string", length=12, nullable=true)
+     */
     private $dateFermetureTemp;
+    /**
+     * @orm\column(type="string", length=12, nullable=true)
+     */
     private $dateReouverture;
-    private $idClientPhysique;
-    private $idClientMoral;
-    private $idTypeCompte;
+    /**
+     * @orm\ManyToOne(targetEntity="ClientPhysique", inversedBy="comptes",cascade={"persist"})
+     * @orm\JoinColumn(name="idClientPhysique", referencedColumnName="id")
+     */
+    private $clientPhysique;
+    /**
+     * @orm\ManyToOne(targetEntity="ClientMoral", inversedBy="comptes",cascade={"persist"})
+     * @orm\JoinColumn(name="idClientMoral", referencedColumnName="id")
+     */
+    private $clientMoral;
+    /**
+     * @orm\ManyToOne(targetEntity="TypeCompte", inversedBy="comptes",cascade={"persist"})
+     * @orm\JoinColumn(name="idTypeCompte", referencedColumnName="id")
+     */
+    private $typeComptes;
 
 
     public function getParam(){
@@ -177,52 +220,53 @@ class Compte
     {
         $this->dateReouverture = $dateReouverture;
     }
+    
 
     /**
-     * Get the value of idClientPhysique
+     * Get the value of clientPhysique
      */ 
-    public function getIdClientPhysique()
+    public function getClientPhysique()
     {
-        return $this->idClientPhysique;
+        return $this->clientPhysique;
     }
 
     /**
-     * Set the value of idClientPhysique
+     * Set the value of clientPhysique
      */ 
-    public function setIdClientPhysique($idClientPhysique)
+    public function setClientPhysique($clientPhysique)
     {
-        $this->idClientPhysique = $idClientPhysique;
+        $this->clientPhysique = $clientPhysique;
     }
 
     /**
-     * Get the value of idClientMoral
+     * Get the value of clientMoral
      */ 
-    public function getIdClientMoral()
+    public function getClientMoral()
     {
-        return $this->idClientMoral;
+        return $this->clientMoral;
     }
 
     /**
-     * Set the value of idClientMoral
+     * Set the value of clientMoral
      */ 
-    public function setIdClientMoral($idClientMoral)
+    public function setClientMoral($clientMoral)
     {
-        $this->idClientMoral = $idClientMoral;
+        $this->clientMoral = $clientMoral;
     }
 
     /**
-     * Get the value of idTypeCompte
+     * Get the value of typeComptes
      */ 
-    public function getIdTypeCompte()
+    public function getTypeComptes()
     {
-        return $this->idTypeCompte;
+        return $this->typeComptes;
     }
 
     /**
-     * Set the value of idTypeCompte
+     * Set the value of typeComptes
      */ 
-    public function setIdTypeCompte($idTypeCompte)
+    public function setTypeComptes($typeComptes)
     {
-        $this->idTypeCompte = $idTypeCompte;
+        $this->typeComptes = $typeComptes;
     }
 }
